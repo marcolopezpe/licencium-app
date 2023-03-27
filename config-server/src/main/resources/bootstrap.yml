@@ -1,0 +1,35 @@
+server:
+  port: ${CUSTOM.SERVER.PORT:8888}
+
+encrypt:
+  key: ${ENCRYPT.KEY:licencium-secret-key}
+
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/marcolopezpe/licencium-config-server-files.git
+          default-label: ${GIT.DEFAULT.LABEL:main}
+          clone-on-start: true
+          force-pull: true
+          refresh-rate: 15
+        encrypt:
+          enabled: false
+      override-none: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 30
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA.SERVER.HOSTNAME:http://localhost:8761/eureka/}
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    refresh:
+      enable: true

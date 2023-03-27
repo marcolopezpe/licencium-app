@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: DISCOVERY-SERVER
+
+server:
+  port: ${CUSTOM.SERVER.PORT:8761}
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 30
+  client:
+    register-with-eureka: false
+    fetch-registry: false
