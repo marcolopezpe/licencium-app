@@ -9,15 +9,3 @@ spring:
       uri: ${CONFIG.SERVER.HOSTNAME:http://localhost:8888}
       enabled: true
       profile: ${CONFIG.SERVER.PROFILE:dev}
-
-#  datasource:
-#    url: jdbc:postgresql://localhost:15432/db_usuario
-#    username: postgres
-#    password: PGUsuario111
-#    driver-class-name: org.postgresql.Driver
-#  jpa:
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: update
-#server:
-#  port: 8081
