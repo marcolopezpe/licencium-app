@@ -22,12 +22,13 @@ public class SecurityConfig {
         http
                 .authorizeExchange()
                 // oauth server
-                .pathMatchers(HttpMethod.GET, "/api/security/**").permitAll()
+                .pathMatchers(HttpMethod.GET, "/api/security/oauth/**").permitAll()
                 // usuario service
                 .pathMatchers(HttpMethod.GET, "/api/usuarios/**").authenticated()
                 // licencia service
                 .pathMatchers(HttpMethod.GET, "/api/licencias/**").authenticated()
                 // others
+                .pathMatchers( "/actuator/**").permitAll()
                 .anyExchange().authenticated()
                 .and()
                 .addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
