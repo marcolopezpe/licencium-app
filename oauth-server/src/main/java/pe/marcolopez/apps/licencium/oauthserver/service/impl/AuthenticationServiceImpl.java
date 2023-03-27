@@ -31,7 +31,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         );
 
         UsuarioEntity usuarioEntity = usuarioRepository
-                .findByNombreUsuario(authenticationDTO.getNombreUsuario())
+                .findByNombreUsuarioContainingIgnoreCase(authenticationDTO.getNombreUsuario())
                 .orElse(null);
 
         if (usuarioEntity == null) {

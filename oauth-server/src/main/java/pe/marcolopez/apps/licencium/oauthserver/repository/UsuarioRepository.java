@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, UUID> {
 
-    Optional<UsuarioEntity> findByNombreUsuario(String nombreUsuario);
+    Optional<UsuarioEntity> findByNombreUsuarioContainingIgnoreCase(String nombreUsuario);
 }

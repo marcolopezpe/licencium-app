@@ -9,22 +9,3 @@ spring:
       uri: ${CONFIG.SERVER.HOSTNAME:http://localhost:8888}
       enabled: true
       profile: ${CONFIG.SERVER.PROFILE:dev}
-#    gateway:
-#      routes:
-#        - id: usuario-service
-#          uri: lb://usuario-service
-#          predicates:
-#            - Path=/api/usuario/**
-#        - id: licencia-service
-#          uri: lb://licencia-service
-#          predicates:
-#            - Path=/api/licencia/**
-#      globalcors:
-#        cors-configurations:
-#            '[/**]':
-#                allowedOrigins: '*'
-#                allowedMethods: '*'
-#                allowedHeaders: '*'
-#                allowCredentials: true
-#                exposedHeaders: 'Authorization, Content-Type, Accept, X-Requested-With, remember-me, Access-Control-Allow-Origin, Access-Control-Allow-Credentials'
-#                maxAge: 3600

@@ -10,6 +10,7 @@ import pe.marcolopez.apps.licencium.oauthserver.entity.UsuarioEntity;
 import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -21,7 +22,7 @@ public class JwtTokenService {
     private Long accessTokenValidity;
 
     public String generateToken(UserDetails userDetails) {
-        return generateToken(Map.of(), userDetails);
+        return generateToken(new HashMap<>(), userDetails);
     }
 
     private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {

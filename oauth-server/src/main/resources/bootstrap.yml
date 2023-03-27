@@ -3,7 +3,7 @@ encrypt:
 
 spring:
   application:
-    name: authentication-server
+    name: oauth-server
   cloud:
     config:
       uri: ${CONFIG.SERVER.HOSTNAME:http://localhost:8888}

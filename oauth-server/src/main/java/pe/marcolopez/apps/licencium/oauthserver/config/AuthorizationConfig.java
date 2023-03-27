@@ -21,7 +21,7 @@ public class AuthorizationConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> usuarioRepository
-                .findByNombreUsuario(username)
+                .findByNombreUsuarioContainingIgnoreCase(username)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 
