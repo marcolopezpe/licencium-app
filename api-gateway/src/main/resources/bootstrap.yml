@@ -1,0 +1,21 @@
+encrypt:
+  key: ${ENCRYPT.KEY:licencium-secret-key}
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      uri: ${CONFIG.SERVER.HOSTNAME:http://localhost:8888}
+      enabled: true
+      profile: ${CONFIG.SERVER.PROFILE:dev}
+#    gateway:
+#      routes:
+#        - id: usuario-service
+#          uri: lb://usuario-service
+#          predicates:
+#            - Path=/api/usuario/**
+#        - id: licencia-service
+#          uri: lb://licencia-service
+#          predicates:
+#            - Path=/api/licencia/**
