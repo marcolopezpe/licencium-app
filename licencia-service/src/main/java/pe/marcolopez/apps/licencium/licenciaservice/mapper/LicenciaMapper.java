@@ -1,14 +1,13 @@
 package pe.marcolopez.apps.licencium.licenciaservice.mapper;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaCreateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaGenerateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaUpdateDTO;
+import pe.marcolopez.apps.licencium.licenciaservice.dto.*;
 import pe.marcolopez.apps.licencium.licenciaservice.entity.LicenciaEntity;
 import pe.marcolopez.apps.licencium.licenciaservice.service.ClienteProxyService;
 
+@Slf4j
 @Component
 @AllArgsConstructor
 public class LicenciaMapper {

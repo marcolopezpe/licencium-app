@@ -1,6 +1,7 @@
 package pe.marcolopez.apps.licencium.clienteservice.dto;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,12 +21,12 @@ public class ClienteCreateDTO {
     private String nombres;
     @NotEmpty
     private String numeroDocumento;
-    @NotEmpty
+    @NotNull
     private LocalDate fechaNacimiento;
     @NotEmpty
     private String domicilio;
     @NotEmpty
     private String grupoFactorSanguineo;
-    @NotEmpty
+    @NotNull
     private Boolean donacionOrganos;
 }
