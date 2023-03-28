@@ -9,3 +9,4 @@ spring:
       uri: ${CONFIG.SERVER.HOSTNAME:http://localhost:8888}
       enabled: true
       profile: ${CONFIG.SERVER.PROFILE:dev}
+
