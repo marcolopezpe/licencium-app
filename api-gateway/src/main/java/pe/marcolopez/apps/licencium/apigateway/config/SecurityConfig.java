@@ -21,14 +21,14 @@ public class SecurityConfig {
     public SecurityWebFilterChain configure(ServerHttpSecurity http) {
         http
                 .authorizeExchange()
-                // oauth server
-                .pathMatchers(HttpMethod.GET, "/api/security/oauth/**").permitAll()
+                // permit all
+                .pathMatchers("/actuator/**").permitAll()
+                .pathMatchers(HttpMethod.POST, "/api/security/oauth/authenticate").permitAll()
                 // usuario service
-                .pathMatchers(HttpMethod.GET, "/api/usuarios/**").authenticated()
+                .pathMatchers("/api/usuarios/**").authenticated()
                 // licencia service
-                .pathMatchers(HttpMethod.GET, "/api/licencias/**").authenticated()
+                .pathMatchers("/api/licencias/**").authenticated()
                 // others
-                .pathMatchers( "/actuator/**").permitAll()
                 .anyExchange().authenticated()
                 .and()
                 .addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
