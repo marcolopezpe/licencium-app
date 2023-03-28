@@ -25,9 +25,9 @@ public class SecurityConfig {
                 .pathMatchers("/actuator/**").permitAll()
                 .pathMatchers(HttpMethod.POST, "/api/security/oauth/authenticate").permitAll()
                 // usuario service
-                .pathMatchers("/api/usuarios/**").authenticated()
+                .pathMatchers("/api/usuario/**").authenticated()
                 // licencia service
-                .pathMatchers("/api/licencias/**").authenticated()
+                .pathMatchers("/api/licencia/**").authenticated()
                 // others
                 .anyExchange().authenticated()
                 .and()
