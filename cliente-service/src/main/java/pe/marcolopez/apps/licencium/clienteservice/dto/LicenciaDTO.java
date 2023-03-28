@@ -1,6 +1,5 @@
-package pe.marcolopez.apps.licencium.licenciaservice.entity;
+package pe.marcolopez.apps.licencium.clienteservice.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,23 +9,17 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
-@Entity
-@Table(name = "tb_licencia")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LicenciaEntity {
+public class LicenciaDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String numeroLicencia;
     private String clase;
-    @Column(columnDefinition = "DATE")
     private LocalDate fechaExpedicion;
     private String categoria;
-    @Column(columnDefinition = "DATE")
     private LocalDate fechaRevalidacion;
     private String restricciones;
-    private UUID clienteId;
+    private ClienteDTO cliente;
 }

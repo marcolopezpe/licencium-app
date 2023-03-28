@@ -1,4 +1,4 @@
-package pe.marcolopez.apps.licencium.licenciaservice.controller;
+package pe.marcolopez.apps.licencium.clienteservice.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -6,10 +6,10 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteCreateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteUpdateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.service.ClienteService;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteCreateDTO;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteDTO;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteUpdateDTO;
+import pe.marcolopez.apps.licencium.clienteservice.service.ClienteService;
 
 import java.net.URI;
 import java.util.List;
@@ -31,6 +31,17 @@ public class ClienteController {
         }
 
         return ResponseEntity.ok(clienteDTOList);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteDTO> findById(@PathVariable String id) {
+        ClienteDTO clienteDTO = clienteService.findbyId(UUID.fromString(id));
+
+        if (clienteDTO == null) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(clienteDTO);
     }
 
     @GetMapping("/numero-documento/{numeroDocumento}")

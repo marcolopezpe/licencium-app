@@ -1,8 +1,8 @@
-package pe.marcolopez.apps.licencium.licenciaservice.service;
+package pe.marcolopez.apps.licencium.clienteservice.service;
 
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteCreateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteUpdateDTO;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteCreateDTO;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteDTO;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteUpdateDTO;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,5 +17,6 @@ public interface ClienteService {
 
     void delete(UUID id);
 
+    ClienteDTO findbyId(UUID id);
     ClienteDTO findByNumeroDocumento(String numeroDocumento);
 }

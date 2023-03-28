@@ -1,16 +1,16 @@
-package pe.marcolopez.apps.licencium.licenciaservice.service.impl;
+package pe.marcolopez.apps.licencium.clienteservice.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteCreateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteUpdateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.entity.ClienteEntity;
-import pe.marcolopez.apps.licencium.licenciaservice.entity.LicenciaEntity;
-import pe.marcolopez.apps.licencium.licenciaservice.mapper.ClienteMapper;
-import pe.marcolopez.apps.licencium.licenciaservice.repository.ClienteRepository;
-import pe.marcolopez.apps.licencium.licenciaservice.repository.LicenciaRepository;
-import pe.marcolopez.apps.licencium.licenciaservice.service.ClienteService;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteCreateDTO;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteDTO;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteUpdateDTO;
+import pe.marcolopez.apps.licencium.clienteservice.dto.LicenciaDTO;
+import pe.marcolopez.apps.licencium.clienteservice.entity.ClienteEntity;
+import pe.marcolopez.apps.licencium.clienteservice.mapper.ClienteMapper;
+import pe.marcolopez.apps.licencium.clienteservice.repository.ClienteRepository;
+import pe.marcolopez.apps.licencium.clienteservice.service.ClienteService;
+import pe.marcolopez.apps.licencium.clienteservice.service.LicenciaProxyService;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +23,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     private final ClienteMapper clienteMapper;
     private final ClienteRepository clienteRepository;
-    private final LicenciaRepository licenciaRepository;
+    private final LicenciaProxyService licenciaProxyService;
 
     @Override
     public List<ClienteDTO> findAll() {
@@ -59,14 +59,21 @@ public class ClienteServiceImpl implements ClienteService {
         Optional<ClienteEntity> clienteEntity = clienteRepository.findById(id);
 
         if (clienteEntity.isPresent()) {
-            LicenciaEntity licenciaEntity = licenciaRepository.validate(clienteEntity.get().getNumeroDocumento());
+            LicenciaDTO licenciaDTO = licenciaProxyService.validate(clienteEntity.get().getNumeroDocumento());
 
-            if (licenciaEntity != null) {
+            if (licenciaDTO != null) {
                 throw new RuntimeException("No se puede eliminar el Cliente, porque tiene Licencia relacionada.");
             }
 
             clienteRepository.delete(clienteEntity.get());
         }
+    }
+
+    @Override
+    public ClienteDTO findbyId(UUID id) {
+        return clienteRepository.findById(id)
+                .map(clienteMapper::mapToDTO)
+                .orElse(null);
     }
 
     @Override

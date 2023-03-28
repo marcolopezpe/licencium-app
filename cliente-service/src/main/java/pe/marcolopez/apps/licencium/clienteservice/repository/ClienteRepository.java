@@ -1,7 +1,7 @@
-package pe.marcolopez.apps.licencium.licenciaservice.repository;
+package pe.marcolopez.apps.licencium.clienteservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pe.marcolopez.apps.licencium.licenciaservice.entity.ClienteEntity;
+import pe.marcolopez.apps.licencium.clienteservice.entity.ClienteEntity;
 
 import java.util.Optional;
 import java.util.UUID;

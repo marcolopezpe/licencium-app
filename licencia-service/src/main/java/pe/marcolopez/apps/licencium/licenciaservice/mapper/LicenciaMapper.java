@@ -7,12 +7,13 @@ import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaDTO;
 import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaGenerateDTO;
 import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaUpdateDTO;
 import pe.marcolopez.apps.licencium.licenciaservice.entity.LicenciaEntity;
+import pe.marcolopez.apps.licencium.licenciaservice.service.ClienteProxyService;
 
 @Component
 @AllArgsConstructor
 public class LicenciaMapper {
 
-    private final ClienteMapper clienteMapper;
+    private final ClienteProxyService clienteProxyService;
 
     public LicenciaDTO mapToDTO(LicenciaEntity licenciaEntity) {
         return LicenciaDTO.builder()
@@ -24,7 +25,7 @@ public class LicenciaMapper {
                 .fechaRevalidacion(licenciaEntity.getFechaRevalidacion())
                 .restricciones(licenciaEntity.getRestricciones())
                 .cliente(
-                        clienteMapper.mapToDTO(licenciaEntity.getClienteEntity())
+                        clienteProxyService.findById(licenciaEntity.getClienteId().toString())
                 )
                 .build();
     }
@@ -38,9 +39,7 @@ public class LicenciaMapper {
                 .categoria(licenciaDTO.getCategoria())
                 .fechaRevalidacion(licenciaDTO.getFechaRevalidacion())
                 .restricciones(licenciaDTO.getRestricciones())
-                .clienteEntity(
-                        clienteMapper.mapToEntity(licenciaDTO.getCliente())
-                )
+                .clienteId(licenciaDTO.getCliente().getId())
                 .build();
     }
 

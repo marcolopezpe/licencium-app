@@ -2,15 +2,11 @@ package pe.marcolopez.apps.licencium.licenciaservice.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaCreateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaGenerateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaUpdateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.entity.ClienteEntity;
+import pe.marcolopez.apps.licencium.licenciaservice.dto.*;
 import pe.marcolopez.apps.licencium.licenciaservice.entity.LicenciaEntity;
 import pe.marcolopez.apps.licencium.licenciaservice.mapper.LicenciaMapper;
-import pe.marcolopez.apps.licencium.licenciaservice.repository.ClienteRepository;
 import pe.marcolopez.apps.licencium.licenciaservice.repository.LicenciaRepository;
+import pe.marcolopez.apps.licencium.licenciaservice.service.ClienteProxyService;
 import pe.marcolopez.apps.licencium.licenciaservice.service.LicenciaService;
 
 import java.util.List;
@@ -23,7 +19,7 @@ public class LicenciaServiceImpl implements LicenciaService {
 
     private final LicenciaMapper licenciaMapper;
     private final LicenciaRepository licenciaRepository;
-    private final ClienteRepository clienteRepository;
+    private final ClienteProxyService clienteProxyService;
 
     @Override
     public List<LicenciaDTO> findAll() {
@@ -43,13 +39,13 @@ public class LicenciaServiceImpl implements LicenciaService {
 
     @Override
     public LicenciaDTO create(LicenciaCreateDTO licenciaCreateDTO) {
-        if (clienteRepository.findById(licenciaCreateDTO.getClienteId()).isEmpty()) {
+        if (clienteProxyService.findById(licenciaCreateDTO.getClienteId().toString()) == null) {
             throw new RuntimeException("El Cliente no existe!");
         }
 
-        ClienteEntity clienteEntity = clienteRepository.findById(licenciaCreateDTO.getClienteId()).get();
+        ClienteDTO clienteDTO = clienteProxyService.findById(licenciaCreateDTO.getClienteId().toString());
         LicenciaEntity licenciaEntity = licenciaMapper.mapToCreateEntity(licenciaCreateDTO);
-        licenciaEntity.setClienteEntity(clienteEntity);
+        licenciaEntity.setClienteId(clienteDTO.getId());
 
         LicenciaEntity licenciaSaved = licenciaRepository.save(licenciaEntity);
 
@@ -77,13 +73,13 @@ public class LicenciaServiceImpl implements LicenciaService {
 
     @Override
     public LicenciaDTO generate(LicenciaGenerateDTO licenciaGenerateDTO) {
-        if (clienteRepository.findByNumeroDocumento(licenciaGenerateDTO.getNumeroDocumento()).isEmpty()) {
+        if (clienteProxyService.findByNumeroDocumento(licenciaGenerateDTO.getNumeroDocumento()) == null) {
             throw new RuntimeException("El Cliente con Documento %s no existe!".formatted(licenciaGenerateDTO.getNumeroDocumento()));
         }
 
-        ClienteEntity clienteEntity = clienteRepository.findByNumeroDocumento(licenciaGenerateDTO.getNumeroDocumento()).get();
+        ClienteDTO clienteDTO = clienteProxyService.findByNumeroDocumento(licenciaGenerateDTO.getNumeroDocumento());
         LicenciaEntity licenciaEntity = licenciaMapper.mapToGenerateEntity(licenciaGenerateDTO);
-        licenciaEntity.setClienteEntity(clienteEntity);
+        licenciaEntity.setClienteId(clienteDTO.getId());
 
         LicenciaEntity licenciaSaved = licenciaRepository.save(licenciaEntity);
 

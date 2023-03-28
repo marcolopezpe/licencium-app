@@ -1,6 +1,5 @@
-package pe.marcolopez.apps.licencium.licenciaservice.entity;
+package pe.marcolopez.apps.licencium.clienteservice.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,20 +9,15 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
-@Entity
-@Table(name = "tb_cliente")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ClienteEntity {
+public class ClienteDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String apellidos;
     private String nombres;
     private String numeroDocumento;
-    @Column(columnDefinition = "DATE")
     private LocalDate fechaNacimiento;
     private String domicilio;
     private String grupoFactorSanguineo;

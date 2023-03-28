@@ -1,4 +1,4 @@
-package pe.marcolopez.apps.licencium.licenciaservice.dto;
+package pe.marcolopez.apps.licencium.clienteservice.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -7,13 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ClienteCreateDTO {
+public class ClienteUpdateDTO {
 
     @NotEmpty
     private String apellidos;

@@ -1,10 +1,10 @@
-package pe.marcolopez.apps.licencium.licenciaservice.mapper;
+package pe.marcolopez.apps.licencium.clienteservice.mapper;
 
 import org.springframework.stereotype.Component;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteCreateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteUpdateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.entity.ClienteEntity;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteCreateDTO;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteDTO;
+import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteUpdateDTO;
+import pe.marcolopez.apps.licencium.clienteservice.entity.ClienteEntity;
 
 @Component
 public class ClienteMapper {

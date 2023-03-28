@@ -1,7 +1,6 @@
-package pe.marcolopez.apps.licencium.licenciaservice.dto;
+package pe.marcolopez.apps.licencium.clienteservice.entity;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,23 +10,22 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
+@Entity
+@Table(name = "tb_cliente")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ClienteUpdateDTO {
+public class ClienteEntity {
 
-    @NotEmpty
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String apellidos;
-    @NotEmpty
     private String nombres;
-    @NotEmpty
     private String numeroDocumento;
-    @NotEmpty
+    @Column(columnDefinition = "DATE")
     private LocalDate fechaNacimiento;
-    @NotEmpty
     private String domicilio;
-    @NotEmpty
     private String grupoFactorSanguineo;
-    @NotEmpty
     private Boolean donacionOrganos;
 }
