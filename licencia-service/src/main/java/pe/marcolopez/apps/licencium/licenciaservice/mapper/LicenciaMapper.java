@@ -25,7 +25,7 @@ public class LicenciaMapper {
                 .fechaRevalidacion(licenciaEntity.getFechaRevalidacion())
                 .restricciones(licenciaEntity.getRestricciones())
                 .cliente(
-                        clienteProxyService.findById(licenciaEntity.getClienteId().toString())
+                        clienteProxyService.findByNumeroDocumento(licenciaEntity.getClienteNumeroDocumento())
                 )
                 .build();
     }
@@ -39,7 +39,7 @@ public class LicenciaMapper {
                 .categoria(licenciaDTO.getCategoria())
                 .fechaRevalidacion(licenciaDTO.getFechaRevalidacion())
                 .restricciones(licenciaDTO.getRestricciones())
-                .clienteId(licenciaDTO.getCliente().getId())
+                .clienteNumeroDocumento(licenciaDTO.getCliente().getNumeroDocumento())
                 .build();
     }
 

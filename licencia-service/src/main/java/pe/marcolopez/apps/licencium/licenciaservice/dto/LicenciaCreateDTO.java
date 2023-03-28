@@ -29,5 +29,5 @@ public class LicenciaCreateDTO {
     @NotEmpty
     private String restricciones;
     @NotNull
-    private UUID clienteId;
+    private String clienteNumeroDocumento;
 }

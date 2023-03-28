@@ -15,7 +15,7 @@ public interface LicenciaRepository extends JpaRepository<LicenciaEntity, UUID> 
     @Query("""
             SELECT l
             FROM LicenciaEntity l
-            WHERE l.clienteEntity.numeroDocumento LIKE '%'+:documentoCliente+'%'
+            WHERE l.clienteNumeroDocumento LIKE '%'+:documentoCliente+'%'
                 OR l.categoria LIKE '%'+:categoria+'%'
                 OR l.numeroLicencia LIKE '%'+:numero+'%'
             """)
@@ -26,7 +26,7 @@ public interface LicenciaRepository extends JpaRepository<LicenciaEntity, UUID> 
     @Query("""
             SELECT l
             FROM LicenciaEntity l
-            WHERE l.clienteEntity.numeroDocumento LIKE ''+:numeroDocumento+'%'
+            WHERE l.clienteNumeroDocumento LIKE ''+:numeroDocumento+'%'
             """)
     LicenciaEntity validate(@Param("numeroDocumento") String numeroDocumento);
 }

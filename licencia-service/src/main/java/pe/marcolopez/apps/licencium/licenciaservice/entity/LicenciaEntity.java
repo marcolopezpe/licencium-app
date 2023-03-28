@@ -28,5 +28,5 @@ public class LicenciaEntity {
     @Column(columnDefinition = "DATE")
     private LocalDate fechaRevalidacion;
     private String restricciones;
-    private UUID clienteId;
+    private String clienteNumeroDocumento;
 }

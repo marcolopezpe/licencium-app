@@ -8,9 +8,6 @@ import pe.marcolopez.apps.licencium.licenciaservice.dto.ClienteDTO;
 @FeignClient(name = "cliente-service")
 public interface ClienteProxyService {
 
-    @GetMapping("/{id}")
-    ClienteDTO findById(@PathVariable String id);
-
     @GetMapping("/numero-documento/{numeroDocumento}")
     ClienteDTO findByNumeroDocumento(@PathVariable String numeroDocumento);
 }

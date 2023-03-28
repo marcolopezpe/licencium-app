@@ -39,13 +39,12 @@ public class LicenciaServiceImpl implements LicenciaService {
 
     @Override
     public LicenciaDTO create(LicenciaCreateDTO licenciaCreateDTO) {
-        if (clienteProxyService.findById(licenciaCreateDTO.getClienteId().toString()) == null) {
+        if (clienteProxyService.findByNumeroDocumento(licenciaCreateDTO.getClienteNumeroDocumento()) == null) {
             throw new RuntimeException("El Cliente no existe!");
         }
 
-        ClienteDTO clienteDTO = clienteProxyService.findById(licenciaCreateDTO.getClienteId().toString());
         LicenciaEntity licenciaEntity = licenciaMapper.mapToCreateEntity(licenciaCreateDTO);
-        licenciaEntity.setClienteId(clienteDTO.getId());
+        licenciaEntity.setClienteNumeroDocumento(licenciaCreateDTO.getClienteNumeroDocumento());
 
         LicenciaEntity licenciaSaved = licenciaRepository.save(licenciaEntity);
 
@@ -77,9 +76,8 @@ public class LicenciaServiceImpl implements LicenciaService {
             throw new RuntimeException("El Cliente con Documento %s no existe!".formatted(licenciaGenerateDTO.getNumeroDocumento()));
         }
 
-        ClienteDTO clienteDTO = clienteProxyService.findByNumeroDocumento(licenciaGenerateDTO.getNumeroDocumento());
         LicenciaEntity licenciaEntity = licenciaMapper.mapToGenerateEntity(licenciaGenerateDTO);
-        licenciaEntity.setClienteId(clienteDTO.getId());
+        licenciaEntity.setClienteNumeroDocumento(licenciaEntity.getClienteNumeroDocumento());
 
         LicenciaEntity licenciaSaved = licenciaRepository.save(licenciaEntity);
 

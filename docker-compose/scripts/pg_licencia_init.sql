@@ -8,13 +8,10 @@ CREATE TABLE tb_licencia (
     categoria                   varchar(20),
     fecha_revalidacion          date,
     restricciones               varchar(200),
-    cliente_id                  uuid,
-    CONSTRAINT fk_licencia_cliente
-        FOREIGN KEY (cliente_id)
-            REFERENCES tb_cliente (id)
+    cliente_numero_documento    varchar(20)
 );
 
 INSERT INTO tb_licencia
-    (numero_licencia, clase, fecha_expedicion, categoria, fecha_revalidacion, restricciones, cliente_id)
+    (numero_licencia, clase, fecha_expedicion, categoria, fecha_revalidacion, restricciones, cliente_numero_documento)
 VALUES
-    ('Q46491904', 'A', '2010-01-08', 'Dos a profesional', '2027-08-01', 'SIN RESTRICCIONES', 'fee67de8-495d-493c-ad27-236b26dc96f6');
+    ('Q46491904', 'A', '2010-01-08', 'Dos a profesional', '2027-08-01', 'SIN RESTRICCIONES', '46491904');
