@@ -12,7 +12,7 @@ import pe.marcolopez.apps.licencium.usuarioservice.service.UsuarioService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("usuarios")
 @AllArgsConstructor
 public class UsuarioController {
 

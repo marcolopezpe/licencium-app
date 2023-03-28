@@ -14,6 +14,7 @@ import reactor.core.publisher.Mono;
 import javax.crypto.SecretKey;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,15 +30,15 @@ public class JwtAuthenticationManager implements ReactiveAuthenticationManager {
                 .just(authentication.getCredentials().toString())
                 .map(token -> {
                     SecretKey key = Keys.hmacShaKeyFor(Base64.getEncoder().encode(privateKey.getBytes()));
-                    return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJwt(token).getBody();
+                    return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
                 })
                 .map(claims -> {
                     String nombreUsuario = claims.get("sub", String.class);
-                    List<String> roles = claims.get("roles", List.class);
-                    Collection<GrantedAuthority> authorities = roles.stream()
-                            .map(SimpleGrantedAuthority::new)
-                            .collect(Collectors.toList());
-                    return new UsernamePasswordAuthenticationToken(nombreUsuario, null, authorities);
+                    //List<String> roles = claims.get("roles", List.class);
+//                    Collection<GrantedAuthority> authorities = roles.stream()
+//                            .map(SimpleGrantedAuthority::new)
+//                            .collect(Collectors.toList());
+                    return new UsernamePasswordAuthenticationToken(nombreUsuario, null, Collections.emptyList());
                 });
     }
 }

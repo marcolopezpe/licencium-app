@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .authorizeExchange()
                 // permit all
                 .pathMatchers("/actuator/**").permitAll()
-                .pathMatchers(HttpMethod.POST, "/api/security/oauth/authenticate").permitAll()
+                .pathMatchers("/api/security/oauth/authenticate").permitAll()
                 // usuario service
                 .pathMatchers("/api/usuario/**").authenticated()
                 // licencia service
