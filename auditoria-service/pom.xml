@@ -13,8 +13,8 @@
 	<artifactId>auditoria-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>audit-service</name>
-	<description>Audit Service for Licencium</description>
+	<name>auditoria-service</name>
+	<description>Auditoria Service for Licencium</description>
 
 	<properties>
 		<java.version>17</java.version>
