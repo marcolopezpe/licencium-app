@@ -11,7 +11,7 @@ public class UsuarioConsumer {
 
     @KafkaListener(
             topics = "${spring.kafka.topic.name}",
-            groupId = "${spring.kafka.consume.group-id}"
+            groupId = "${spring.kafka.consumer.group-id}"
     )
     public void consume(UsuarioCreateDTO usuarioCreateDTO) {
         log.info("### -> Consuming message with payload: {}", usuarioCreateDTO);
