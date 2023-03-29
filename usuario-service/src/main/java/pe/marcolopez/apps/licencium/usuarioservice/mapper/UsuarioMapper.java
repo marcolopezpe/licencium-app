@@ -1,6 +1,5 @@
 package pe.marcolopez.apps.licencium.usuarioservice.mapper;
 
-import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import pe.marcolopez.apps.licencium.usuarioservice.dto.UsuarioCreateDTO;
@@ -9,10 +8,9 @@ import pe.marcolopez.apps.licencium.usuarioservice.dto.UsuarioUpdateDTO;
 import pe.marcolopez.apps.licencium.usuarioservice.entity.UsuarioEntity;
 
 @Component
-@AllArgsConstructor
 public class UsuarioMapper {
 
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public UsuarioEntity mapToEntity(UsuarioDTO usuarioDTO) {
         return UsuarioEntity.builder()
