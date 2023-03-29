@@ -1,4 +1,4 @@
-package pe.marcolopez.apps.licencium.auditservice;
+package pe.marcolopez.apps.licencium.auditoriaservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

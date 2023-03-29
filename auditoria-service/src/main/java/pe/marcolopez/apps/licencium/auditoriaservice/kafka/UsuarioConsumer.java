@@ -1,9 +1,9 @@
-package pe.marcolopez.apps.licencium.auditservice.kafka;
+package pe.marcolopez.apps.licencium.auditoriaservice.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import pe.marcolopez.apps.licencium.auditservice.dto.UsuarioCreateDTO;
+import pe.marcolopez.apps.licencium.auditoriaservice.dto.UsuarioCreateDTO;
 
 @Slf4j
 @Service

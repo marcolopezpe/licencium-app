@@ -23,7 +23,7 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
-    lease-expiration-duration-in-seconds: 30
+    lease-expiration-duration-in-seconds: 60
   client:
     serviceUrl:
       defaultZone: ${EUREKA.SERVER.HOSTNAME:http://localhost:8761/eureka/}
@@ -33,3 +33,22 @@ eureka:
       enabled: true
     refresh:
       enable: true
+
+management:
+  auditevents:
+    enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /actuator
+  endpoint:
+    health:
+      group:
+        custom:
+          include: diskSpace, ping, memory, mem
+          show-details: always
+  info:
+    env:
+      enabled: true
+

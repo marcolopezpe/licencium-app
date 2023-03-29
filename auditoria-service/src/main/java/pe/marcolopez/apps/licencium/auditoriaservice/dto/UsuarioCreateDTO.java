@@ -1,4 +1,4 @@
-package pe.marcolopez.apps.licencium.auditservice.dto;
+package pe.marcolopez.apps.licencium.auditoriaservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
