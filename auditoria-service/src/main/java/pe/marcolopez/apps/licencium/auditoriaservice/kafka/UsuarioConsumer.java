@@ -14,7 +14,7 @@ public class UsuarioConsumer {
             groupId = "${spring.kafka.consumer.group-id}"
     )
     public void consume(UsuarioCreateDTO usuarioCreateDTO) {
-        log.info("### -> Consuming message with payload: {}", usuarioCreateDTO);
+        log.info("### -> Consuming message with payload: {}", usuarioCreateDTO.toString());
 
         // Save UsuarioCreateDTO on mongodb
     }
