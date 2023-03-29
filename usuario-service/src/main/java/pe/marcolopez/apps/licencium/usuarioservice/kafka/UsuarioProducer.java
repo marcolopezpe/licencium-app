@@ -10,6 +10,8 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import pe.marcolopez.apps.licencium.usuarioservice.dto.UsuarioCreateDTO;
 
+import java.util.UUID;
+
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -18,14 +20,14 @@ public class UsuarioProducer {
     private final NewTopic topic;
     private final KafkaTemplate<String, UsuarioCreateDTO> kafkaTemplate;
 
-    public void send(UsuarioCreateDTO usuarioCreateDTO) {
+    public void send(UsuarioCreateDTO usuarioCreateDTO, UUID id) {
         log.info("### -> Sending message to topic: {} with payload: {}", topic.name(), usuarioCreateDTO);
 
-        Message<UsuarioCreateDTO> message = MessageBuilder
+        /*Message<UsuarioCreateDTO> message = MessageBuilder
                 .withPayload(usuarioCreateDTO)
                 .setHeader(KafkaHeaders.TOPIC, topic.name())
-                .build();
+                .build();*/
 
-        kafkaTemplate.send(message);
+        kafkaTemplate.send(topic.name(), String.valueOf(id), usuarioCreateDTO);
     }
 }

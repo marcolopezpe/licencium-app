@@ -6,7 +6,7 @@ services:
     container_name: pg-licencia
     restart: unless-stopped
     ports:
-    - 25432:5432
+    - "25432:5432"
     environment:
       POSTGRES_DB: db_licencia
       POSTGRES_PASSWORD: PGLicencia111

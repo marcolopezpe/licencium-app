@@ -29,7 +29,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public UsuarioDTO create(UsuarioCreateDTO usuarioCreateDTO) {
         UsuarioEntity usuarioEntity = usuarioMapper.mapToEntity(usuarioCreateDTO);
         UsuarioEntity usuarioSaved = usuarioRepository.save(usuarioEntity);
-        usuarioProducer.send(usuarioCreateDTO);
+        usuarioProducer.send(usuarioCreateDTO, usuarioSaved.getId());
         return usuarioMapper.mapToDTO(usuarioSaved);
     }
 
