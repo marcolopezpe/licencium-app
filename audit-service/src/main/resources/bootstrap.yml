@@ -1,0 +1,11 @@
+encrypt:
+  key: ${ENCRYPT.KEY:licencium-secret-key}
+
+spring:
+  application:
+    name: audit-service
+  cloud:
+    config:
+      uri: ${CONFIG.SERVER.HOSTNAME:http://localhost:8888}
+      enabled: true
+      profile: ${CONFIG.SERVER.PROFILE:dev}

@@ -7,7 +7,8 @@ echo '###########################################################'
 docker-compose -f 01-pg-usuario.yml \
 				-f 02-pg-cliente.yml \
 				-f 03-pg-licencia.yml \
-				-f 04-kafka.yml \
+				-f 04-kafka-server.yml \
+				-f 05-mongo-audit.yml \
 				-p licencium-app \
 				down
 

@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: on-failure
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password1234
+      MONGO_INITDB_DATABASE: db_audit
+    networks:
+      - default
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - "9090:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password1234
+      - ME_CONFIG_MONGODB_URL=mongodb://root:password1234@mongo:27017/db_audit?authSource=admin
+    depends_on:
+      - mongo
+    networks:
+      - default
+
+networks:
+  default:
+    external: true
+    name: licencium-net
