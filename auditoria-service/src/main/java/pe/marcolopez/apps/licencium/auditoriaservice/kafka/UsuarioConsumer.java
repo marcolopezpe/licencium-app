@@ -15,10 +15,12 @@ public class UsuarioConsumer {
     private final Gson gson;
 
     @KafkaListener(
-            topics = "${spring.kafka.topic.name}",
-            groupId = "${spring.kafka.consumer.group-id}"
+            topics = "usuario_topics",
+            groupId = "auditoria"
     )
     public void consume(String json) {
+        log.info("### -> Consuming message with payload JSON: {}", json);
+
         UsuarioCreateDTO usuarioCreateDTO = gson.fromJson(json, UsuarioCreateDTO.class);
         log.info("### -> Consuming message with payload: {}", usuarioCreateDTO.toString());
 
