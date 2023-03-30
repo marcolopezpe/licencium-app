@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pe.marcolopez.apps.licencium.usuarioservice.dto.UsuarioCreateDTO;
 import pe.marcolopez.apps.licencium.usuarioservice.dto.UsuarioDTO;
+import pe.marcolopez.apps.licencium.usuarioservice.kafka.UsuarioProducer;
 import pe.marcolopez.apps.licencium.usuarioservice.service.UsuarioService;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final UsuarioProducer usuarioProducer;
 
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> findAll() {
@@ -32,6 +34,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<UsuarioDTO> create(@Validated @RequestBody UsuarioCreateDTO usuarioCreateDTO) {
         UsuarioDTO usuarioDTOCreated = usuarioService.create(usuarioCreateDTO);
+        usuarioProducer.send(usuarioCreateDTO);
         return ResponseEntity.ok(usuarioDTOCreated);
     }
 }

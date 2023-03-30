@@ -1,9 +1,13 @@
 package pe.marcolopez.apps.licencium.usuarioservice.kafka;
 
+import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import pe.marcolopez.apps.licencium.usuarioservice.dto.UsuarioCreateDTO;
 
@@ -15,15 +19,27 @@ import java.util.UUID;
 public class UsuarioProducer {
 
     private final NewTopic topic;
-    private final KafkaTemplate<String, UsuarioCreateDTO> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final Gson gson;
 
     public void send(UsuarioCreateDTO usuarioCreateDTO) {
-        log.info("### -> Sending message to topic: {} with payload: {}", topic.name(), usuarioCreateDTO);
+        String json = gson.toJson(usuarioCreateDTO);
 
-        kafkaTemplate.send(
+        log.info("### -> Sending message to topic: {} with payload: {}", topic.name(), usuarioCreateDTO.toString());
+        log.info("### -> Sending message to topic: {} with payload JSON: {}", topic.name(), json);
+
+        Message<String> message = MessageBuilder
+                .withPayload(json)
+                .setHeader(KafkaHeaders.TOPIC, topic.name())
+                .setHeader(KafkaHeaders.KEY, usuarioCreateDTO.getNombreUsuario())
+                .build();
+
+        kafkaTemplate.send(message);
+
+        /*kafkaTemplate.send(
                 topic.name(),
                 usuarioCreateDTO.getNombreUsuario(),
                 usuarioCreateDTO
-        );
+        );*/
     }
 }
