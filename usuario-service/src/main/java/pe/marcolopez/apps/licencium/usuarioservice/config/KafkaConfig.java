@@ -16,15 +16,12 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-    @Value("${kafka.server:localhost}")
-    private String kafkaServer;
-
-    @Value("${kafka.port:29092}")
-    private String kafkaPort;
+    @Value("${kafka.servers:localhost:29092}")
+    private String kafkaServers;
 
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> kafkaProperties = new HashMap<>();
-        kafkaProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer + ":" + kafkaPort);
+        kafkaProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServers);
         kafkaProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         kafkaProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         return new DefaultKafkaProducerFactory<>(kafkaProperties);

@@ -14,7 +14,7 @@ public class UsuarioConsumer {
 
     private final Gson gson;
 
-    @KafkaListener(topics = "usuarios")
+    @KafkaListener(topics = "${kafka.topic:usuarios}")
     public void consume(String json) {
         log.info("### -> Consuming message with payload JSON: {}", json);
 
