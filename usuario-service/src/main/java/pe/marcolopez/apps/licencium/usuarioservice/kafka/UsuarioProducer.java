@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
@@ -18,19 +19,20 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UsuarioProducer {
 
-    private final NewTopic topic;
+    @Value("${kafka.topic:usuarios}")
+    private final String topicName;
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final Gson gson;
 
     public void send(UsuarioCreateDTO usuarioCreateDTO) {
         String json = gson.toJson(usuarioCreateDTO);
 
-        log.info("### -> Sending message to topic: {} with payload: {}", topic.name(), usuarioCreateDTO.toString());
-        log.info("### -> Sending message to topic: {} with payload JSON: {}", topic.name(), json);
+        log.info("### -> Sending message to topic: {} with payload: {}", topicName, usuarioCreateDTO.toString());
+        log.info("### -> Sending message to topic: {} with payload JSON: {}", topicName, json);
 
         Message<String> message = MessageBuilder
                 .withPayload(json)
-                .setHeader(KafkaHeaders.TOPIC, topic.name())
+                .setHeader(KafkaHeaders.TOPIC, topicName)
                 .setHeader(KafkaHeaders.KEY, usuarioCreateDTO.getNombreUsuario())
                 .build();
 
