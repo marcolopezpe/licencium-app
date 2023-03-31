@@ -16,7 +16,7 @@ public class ClienteMapper {
                 .apellidos(clienteEntity.getApellidos())
                 .nombres(clienteEntity.getNombres())
                 .numeroDocumento(clienteEntity.getNumeroDocumento())
-                .fechaNacimiento(ConvertUtil.convertToEpochDay(clienteEntity.getFechaNacimiento()))
+                .fechaNacimiento(ConvertUtil.convertToLong(clienteEntity.getFechaNacimiento()))
                 .domicilio(clienteEntity.getDomicilio())
                 .grupoFactorSanguineo(clienteEntity.getGrupoFactorSanguineo())
                 .donacionOrganos(clienteEntity.getDonacionOrganos())

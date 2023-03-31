@@ -1,6 +1,5 @@
 package pe.marcolopez.apps.licencium.licenciaservice.mapper;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -22,9 +21,9 @@ public class LicenciaMapper {
                 .id(licenciaEntity.getId())
                 .numeroLicencia(licenciaEntity.getNumeroLicencia())
                 .clase(licenciaEntity.getClase())
-                .fechaExpedicion(ConvertUtil.convertToEpochDay(licenciaEntity.getFechaExpedicion()))
+                .fechaExpedicion(ConvertUtil.convertToLong(licenciaEntity.getFechaExpedicion()))
                 .categoria(licenciaEntity.getCategoria())
-                .fechaRevalidacion(ConvertUtil.convertToEpochDay(licenciaEntity.getFechaRevalidacion()))
+                .fechaRevalidacion(ConvertUtil.convertToLong(licenciaEntity.getFechaRevalidacion()))
                 .restricciones(licenciaEntity.getRestricciones())
                 .cliente(
                         clienteProxyService.findByNumeroDocumento(

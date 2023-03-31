@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pe.marcolopez.apps.licencium.clienteservice.dto.validators.DateLong;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +20,7 @@ public class ClienteUpdateDTO {
     @NotEmpty
     private String numeroDocumento;
     @NotEmpty
+    @DateLong
     private Long fechaNacimiento;
     @NotEmpty
     private String domicilio;
