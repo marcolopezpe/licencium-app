@@ -1,0 +1,495 @@
+{
+	"info": {
+		"_postman_id": "aa0bf0eb-b12e-4ff2-8120-2c594f1118e5",
+		"name": "LICENCIA-APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USUARIO-SERVICE",
+			"item": [
+				{
+					"name": "USUARIOS - GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USUARIOS (AG) - GET ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcGVsbGlkb3MiOiJMT1BFWiIsIm5vbWJyZVVzdWFyaW8iOiJBRE1JTiIsImVtYWlsIjoiTUFSQ09MT1BFWlBFQE9VVExPT0suQ09NIiwibm9tYnJlcyI6Ik1BUkNPIiwic3ViIjoiQURNSU4iLCJpYXQiOjE2ODAwMTExNzcsImV4cCI6MTY4MDIyNzE3N30.4xeyUGz05sB1DiGU5x4mkCiPvTcfFoxA5VeyFyAiNgRWUk3-qZDTwNd6LBn5mIJanTjepgCK6bkQOf8cAimwtg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8765/api/usuario/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"api",
+								"usuario",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USUARIOS - CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombres\": \"Evely Angelica\",\n    \"apellidos\": \"Espinoza Paucara\",\n    \"nombreUsuario\": \"evely1.espinoza\",\n    \"contrasena\": \"123456\",\n    \"email\": \"espinoza@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USUARIOS - UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombres\": \"Evely Angelica\",\n    \"apellidos\": \"Espinoza Paucara\",\n    \"nombreUsuario\": \"evelyaaaaaa.espinoza\",\n    \"contrasena\": \"123456\",\n    \"email\": \"espinoza@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/usuarios/9664d3de-f588-4867-ad83-01a8f70391dc",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"usuarios",
+								"9664d3de-f588-4867-ad83-01a8f70391dc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USUARIOS - DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/usuarios/9664d3de-f588-4867-ad83-01a8f70391dc",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"usuarios",
+								"9664d3de-f588-4867-ad83-01a8f70391dc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CLIENTE-SERVICE",
+			"item": [
+				{
+					"name": "CLIENTES - CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apellidos\": \"Espinoza Paucara\",\n    \"nombres\": \"Evely Angelica\",\n    \"numeroDocumento\": \"47004061\",\n    \"fechaNacimiento\": 699512400000,\n    \"domicilio\": \"Carabayllo\",\n    \"grupoFactorSanguineo\": \"O+\",\n    \"donacionOrganos\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8003/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENTES - GET BY DOCUMENTO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcGVsbGlkb3MiOiJMT1BFWiIsIm5vbWJyZVVzdWFyaW8iOiJBRE1JTiIsImVtYWlsIjoiTUFSQ09MT1BFWlBFQE9VVExPT0suQ09NIiwibm9tYnJlcyI6Ik1BUkNPIiwic3ViIjoiQURNSU4iLCJpYXQiOjE2Nzk5NjMzMzYsImV4cCI6MTY3OTk2MzkzNn0.Spi9xNd6DWNeN_qEv8Nrg4TQHH77im4SLVyKtYqrRDEiXrq_41P5o7LzndZ1aHtzUuR-zEuuZh3LBDzUWgFHcw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8003/clientes/numero-documento/46491904",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"clientes",
+								"numero-documento",
+								"46491904"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENTES - GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8003/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENTES (AG) - GET ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcGVsbGlkb3MiOiJMT1BFWiIsIm5vbWJyZVVzdWFyaW8iOiJBRE1JTiIsImVtYWlsIjoiTUFSQ09MT1BFWlBFQE9VVExPT0suQ09NIiwibm9tYnJlcyI6Ik1BUkNPIiwic3ViIjoiQURNSU4iLCJpYXQiOjE2ODAwMTExNzcsImV4cCI6MTY4MDIyNzE3N30.4xeyUGz05sB1DiGU5x4mkCiPvTcfFoxA5VeyFyAiNgRWUk3-qZDTwNd6LBn5mIJanTjepgCK6bkQOf8cAimwtg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8765/api/cliente/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"api",
+								"cliente",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LICENCIA-SERVICE",
+			"item": [
+				{
+					"name": "LICENCIAS - GET ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcGVsbGlkb3MiOiJMT1BFWiIsIm5vbWJyZVVzdWFyaW8iOiJBRE1JTiIsImVtYWlsIjoiTUFSQ09MT1BFWlBFQE9VVExPT0suQ09NIiwibm9tYnJlcyI6Ik1BUkNPIiwic3ViIjoiQURNSU4iLCJpYXQiOjE2ODAwMTExNzcsImV4cCI6MTY4MDIyNzE3N30.4xeyUGz05sB1DiGU5x4mkCiPvTcfFoxA5VeyFyAiNgRWUk3-qZDTwNd6LBn5mIJanTjepgCK6bkQOf8cAimwtg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8002/licencias",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"licencias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LICENCIAS (AG) - GET ALL Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcGVsbGlkb3MiOiJMT1BFWiIsIm5vbWJyZVVzdWFyaW8iOiJBRE1JTiIsImVtYWlsIjoiTUFSQ09MT1BFWlBFQE9VVExPT0suQ09NIiwibm9tYnJlcyI6Ik1BUkNPIiwic3ViIjoiQURNSU4iLCJpYXQiOjE2ODAwMTExNzcsImV4cCI6MTY4MDIyNzE3N30.4xeyUGz05sB1DiGU5x4mkCiPvTcfFoxA5VeyFyAiNgRWUk3-qZDTwNd6LBn5mIJanTjepgCK6bkQOf8cAimwtg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8765/api/licencia/licencias",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"api",
+								"licencia",
+								"licencias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LICENCIAS - CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"numeroLicencia\": \"Q46491905\",\n        \"clase\": \"A\",\n        \"fechaExpedicion\": 1680152400,\n        \"categoria\": \"Dos a profesional\",\n        \"fechaRevalidacion\": 21031,\n        \"restricciones\": \"SIN RESTRICCIONES\",\n        \"clienteNumeroDocumento\": \"46491904\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/licencias",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"licencias"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CONFIGSERVER - USUARIO [DEV]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/auditoria-service/dev",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"auditoria-service",
+						"dev"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CONFIGSERVER - ENCRYPT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "licencium"
+				},
+				"url": {
+					"raw": "localhost:8888/encrypt",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"encrypt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CONFIGSERVER - DECRYPT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "b107bc84e371f7703e6bd52126601d55d40a529db812450fe3f50251af3aa7c7"
+				},
+				"url": {
+					"raw": "localhost:8888/decrypt",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"decrypt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTUATOR - REFRESH",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8003/actuator/refresh",
+					"host": [
+						"localhost"
+					],
+					"port": "8003",
+					"path": [
+						"actuator",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTUATOR - LOGFILE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8003/actuator/logfile",
+					"host": [
+						"localhost"
+					],
+					"port": "8003",
+					"path": [
+						"actuator",
+						"logfile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OAUTH - AUTHENTICATE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombreUsuario\": \"admin\",\n    \"contrasena\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8777/oauth/authenticate",
+					"host": [
+						"localhost"
+					],
+					"port": "8777",
+					"path": [
+						"oauth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OAUTH (AG) - AUTHENTICATE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombreUsuario\": \"admin\",\n    \"contrasena\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8765/api/security/oauth/authenticate",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"api",
+						"security",
+						"oauth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
