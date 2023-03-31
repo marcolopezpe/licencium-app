@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +19,7 @@ public class ClienteUpdateDTO {
     @NotEmpty
     private String numeroDocumento;
     @NotEmpty
-    private LocalDate fechaNacimiento;
+    private Long fechaNacimiento;
     @NotEmpty
     private String domicilio;
     @NotEmpty

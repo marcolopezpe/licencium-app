@@ -20,12 +20,12 @@ public class LicenciaCreateDTO {
     private String numeroLicencia;
     @NotEmpty
     private String clase;
-    @NotEmpty
-    private LocalDate fechaExpedicion;
+    @NotNull
+    private Long fechaExpedicion;
     @NotEmpty
     private String categoria;
-    @NotEmpty
-    private LocalDate fechaRevalidacion;
+    @NotNull
+    private Long fechaRevalidacion;
     @NotEmpty
     private String restricciones;
     @NotNull

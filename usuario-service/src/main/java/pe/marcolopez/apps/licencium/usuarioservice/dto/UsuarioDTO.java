@@ -1,5 +1,6 @@
 package pe.marcolopez.apps.licencium.usuarioservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,4 +20,11 @@ public class UsuarioDTO {
     private String nombreUsuario;
     private String contrasena;
     private String email;
+
+    @JsonIgnore
+    private String usuarioCreacion;
+    @JsonIgnore
+    private Long fechaCreacion;
+    @JsonIgnore
+    private Integer accion;
 }

@@ -1,11 +1,11 @@
 package pe.marcolopez.apps.licencium.clienteservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
@@ -18,8 +18,15 @@ public class ClienteDTO {
     private String apellidos;
     private String nombres;
     private String numeroDocumento;
-    private LocalDate fechaNacimiento;
+    private Long fechaNacimiento;
     private String domicilio;
     private String grupoFactorSanguineo;
     private Boolean donacionOrganos;
+
+    @JsonIgnore
+    private String usuarioCreacion;
+    @JsonIgnore
+    private Long fechaCreacion;
+    @JsonIgnore
+    private Integer accion;
 }

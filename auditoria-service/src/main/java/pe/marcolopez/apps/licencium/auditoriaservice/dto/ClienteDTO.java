@@ -1,30 +1,27 @@
-package pe.marcolopez.apps.licencium.clienteservice.dto;
+package pe.marcolopez.apps.licencium.auditoriaservice.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ClienteCreateDTO {
+public class ClienteDTO {
 
-    @NotEmpty
+    private String id;
     private String apellidos;
-    @NotEmpty
     private String nombres;
-    @NotEmpty
     private String numeroDocumento;
-    @NotNull
     private Long fechaNacimiento;
-    @NotEmpty
     private String domicilio;
-    @NotEmpty
     private String grupoFactorSanguineo;
-    @NotNull
     private Boolean donacionOrganos;
+    private String usuarioCreacion;
+    private Long fechaCreacion;
+    private Integer accion;
 }

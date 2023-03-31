@@ -6,9 +6,11 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import pe.marcolopez.apps.licencium.clienteservice.dto.Accion;
 import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteCreateDTO;
 import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteDTO;
 import pe.marcolopez.apps.licencium.clienteservice.dto.ClienteUpdateDTO;
+import pe.marcolopez.apps.licencium.clienteservice.producer.ClienteProducer;
 import pe.marcolopez.apps.licencium.clienteservice.service.ClienteService;
 
 import java.net.URI;
@@ -21,6 +23,7 @@ import java.util.UUID;
 public class ClienteController {
 
     private final ClienteService clienteService;
+    private final ClienteProducer clienteProducer;
 
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> findAll() {
@@ -58,6 +61,9 @@ public class ClienteController {
     @PostMapping
     public ResponseEntity<?> create(@Validated @RequestBody ClienteCreateDTO clienteCreateDTO) {
         ClienteDTO clienteDTO = clienteService.create(clienteCreateDTO);
+        clienteDTO.setNumeroDocumento(clienteCreateDTO.getNumeroDocumento());
+        clienteDTO.setAccion(Accion.CREATED.getValue());
+        clienteProducer.send(clienteDTO);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -76,13 +82,19 @@ public class ClienteController {
             throw new RuntimeException("Cliente con Numero Documento %s no existe!".formatted(numeroDocumento));
         }
 
+        clienteDTO.setAccion(Accion.UPDATED.getValue());
+        clienteProducer.send(clienteDTO);
+
         ClienteDTO clienteUpdated = clienteService.update(numeroDocumento, clienteUpdateDTO);
         return ResponseEntity.ok(clienteUpdated);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
+        ClienteDTO clienteDTO = clienteService.findbyId(UUID.fromString(id));
+        clienteDTO.setAccion(Accion.DELETED.getValue());
         clienteService.delete(UUID.fromString(id));
+        clienteProducer.send(clienteDTO);
         return ResponseEntity.ok().build();
     }
 }

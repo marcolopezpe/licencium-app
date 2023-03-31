@@ -18,7 +18,7 @@ public class ClienteDTO {
     private String apellidos;
     private String nombres;
     private String numeroDocumento;
-    private LocalDate fechaNacimiento;
+    private Long fechaNacimiento;
     private String domicilio;
     private String grupoFactorSanguineo;
     private Boolean donacionOrganos;

@@ -12,6 +12,7 @@ import pe.marcolopez.apps.licencium.usuarioservice.repository.UsuarioRepository;
 import pe.marcolopez.apps.licencium.usuarioservice.service.UsuarioService;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -51,6 +52,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     public UsuarioDTO findByEmail(String email) {
         return usuarioMapper.mapToDTO(
                 usuarioRepository.findByEmail(email)
+        );
+    }
+
+    @Override
+    public UsuarioDTO findById(UUID id) {
+        return usuarioMapper.mapToDTO(
+                Objects.requireNonNull(usuarioRepository.findById(id).orElse(null))
         );
     }
 

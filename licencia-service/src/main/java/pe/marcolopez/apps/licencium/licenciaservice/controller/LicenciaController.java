@@ -6,10 +6,8 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaCreateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaGenerateDTO;
-import pe.marcolopez.apps.licencium.licenciaservice.dto.LicenciaUpdateDTO;
+import pe.marcolopez.apps.licencium.licenciaservice.dto.*;
+import pe.marcolopez.apps.licencium.licenciaservice.producer.LicenciaProducer;
 import pe.marcolopez.apps.licencium.licenciaservice.service.LicenciaService;
 
 import java.net.URI;
@@ -22,6 +20,7 @@ import java.util.UUID;
 public class LicenciaController {
 
     private final LicenciaService licenciaService;
+    private final LicenciaProducer licenciaProducer;
 
     @GetMapping
     public ResponseEntity<List<LicenciaDTO>> findAll() {
@@ -67,12 +66,16 @@ public class LicenciaController {
                 .buildAndExpand(licenciaDTO.getNumeroLicencia())
                 .toUri();
 
+        licenciaDTO.setAccion(Accion.GENERATED.getValue());
+
         return ResponseEntity.created(location).build();
     }
 
     @PostMapping
     public ResponseEntity<?> create(@Validated @RequestBody LicenciaCreateDTO licenciaCreateDTO) {
         LicenciaDTO licenciaDTO = licenciaService.create(licenciaCreateDTO);
+        licenciaDTO.setAccion(Accion.CREATED.getValue());
+        licenciaProducer.send(licenciaDTO);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -91,13 +94,19 @@ public class LicenciaController {
             throw new RuntimeException("Numero de Licencia %s no existe!".formatted(numeroLicencia));
         }
 
+        licenciaDTO.setAccion(Accion.UPDATED.getValue());
+        licenciaProducer.send(licenciaDTO);
+
         LicenciaDTO licenciaUpdated = licenciaService.update(licenciaUpdateDTO);
         return ResponseEntity.ok(licenciaUpdated);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
+        LicenciaDTO licenciaDTO = licenciaService.findById(UUID.fromString(id));
+        licenciaDTO.setAccion(Accion.DELETED.getValue());
         licenciaService.delete(UUID.fromString(id));
+        licenciaProducer.send(licenciaDTO);
         return ResponseEntity.ok().build();
     }
 }

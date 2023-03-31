@@ -1,5 +1,7 @@
 package pe.marcolopez.apps.licencium.licenciaservice.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,11 +18,18 @@ public class LicenciaUpdateDTO {
 
 
     private UUID id;
+    @NotEmpty
     private String numeroLicencia;
+    @NotEmpty
     private String clase;
-    private LocalDate fechaExpedicion;
+    @NotNull
+    private Long fechaExpedicion;
+    @NotEmpty
     private String categoria;
-    private LocalDate fechaRevalidacion;
+    @NotNull
+    private Long fechaRevalidacion;
+    @NotEmpty
     private String restricciones;
+    @NotEmpty
     private UUID clienteId;
 }

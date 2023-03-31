@@ -48,7 +48,7 @@ public class UsuarioMapper {
         usuarioEntity.setNombres(usuarioUpdateDTO.getNombres());
         usuarioEntity.setApellidos(usuarioUpdateDTO.getApellidos());
         usuarioEntity.setNombreUsuario(usuarioUpdateDTO.getNombreUsuario());
-        usuarioEntity.setContrasena(usuarioUpdateDTO.getContrasena());
+        usuarioEntity.setContrasena(passwordEncoder.encode(usuarioUpdateDTO.getContrasena()));
         usuarioEntity.setEmail(usuarioUpdateDTO.getEmail());
     }
 }

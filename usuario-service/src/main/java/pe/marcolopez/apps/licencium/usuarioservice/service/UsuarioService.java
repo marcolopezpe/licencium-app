@@ -17,5 +17,7 @@ public interface UsuarioService {
 
     UsuarioDTO findByEmail(String email);
 
+    UsuarioDTO findById(UUID id);
+
     List<UsuarioDTO> findAll();
 }

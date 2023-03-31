@@ -10,6 +10,7 @@ import pe.marcolopez.apps.licencium.licenciaservice.service.ClienteProxyService;
 import pe.marcolopez.apps.licencium.licenciaservice.service.LicenciaService;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -95,6 +96,13 @@ public class LicenciaServiceImpl implements LicenciaService {
     public LicenciaDTO findByNumeroLicencia(String numeroLicencia) {
         return licenciaMapper.mapToDTO(
                 licenciaRepository.findByNumeroLicencia(numeroLicencia)
+        );
+    }
+
+    @Override
+    public LicenciaDTO findById(UUID id) {
+        return licenciaMapper.mapToDTO(
+                Objects.requireNonNull(licenciaRepository.findById(id).orElse(null))
         );
     }
 }

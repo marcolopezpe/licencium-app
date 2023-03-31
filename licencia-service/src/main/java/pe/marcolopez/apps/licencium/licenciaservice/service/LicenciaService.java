@@ -25,4 +25,6 @@ public interface LicenciaService {
     LicenciaDTO validate(String numeroDocumento);
 
     LicenciaDTO findByNumeroLicencia(String numeroLicencia);
+
+    LicenciaDTO findById(UUID id);
 }

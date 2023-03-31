@@ -19,9 +19,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class KafkaConfig {
 
-    @Value("${kafka.topic:usuarios}")
-    private String topicName;
-
     @Value("${kafka.servers:localhost:29092}")
     private String kafkaServers;
 
@@ -29,7 +26,6 @@ public class KafkaConfig {
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> kafkaProperties = new HashMap<>();
         kafkaProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServers);
-        kafkaProperties.put(ConsumerConfig.GROUP_ID_CONFIG, topicName);
         kafkaProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         kafkaProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(kafkaProperties);
