@@ -9,9 +9,3 @@ spring:
       uri: ${CONFIG.SERVER.HOSTNAME:http://localhost:8888}
       enabled: true
       profile: ${CONFIG.SERVER.PROFILE:dev}
-
-logging:
-  level:
-    org.hibernate.SQL: TRACE
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
