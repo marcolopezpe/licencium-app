@@ -9,6 +9,8 @@ docker-compose -f 01-pg-usuario.yml \
 				-f 03-pg-licencia.yml \
 				-f 04-kafka-server.yml \
 				-f 05-mongo-audit.yml \
+				-f 06-zipkin-server.yml \
+				-f 07-grafana-prometheus.yml \
 				-p licencium-app \
 				down
 
