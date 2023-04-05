@@ -7,3 +7,51 @@ scrape_configs:
       - targets: ['192.168.100.14:8001']
         labels:
           application: 'Usuario Service Microservice'
+
+  - job_name: 'Licencia Service'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 2s
+    static_configs:
+      - targets: ['192.168.100.14:8002']
+        labels:
+          application: 'Licencia Service Microservice'
+
+  - job_name: 'Cliente Service'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 2s
+    static_configs:
+      - targets: ['192.168.100.14:8003']
+        labels:
+          application: 'Licencia Service Microservice'
+
+  - job_name: 'Auditoria Service'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 2s
+    static_configs:
+      - targets: ['192.168.100.14:8005']
+        labels:
+          application: 'Licencia Service Microservice'
+
+  - job_name: 'API Gateway'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 2s
+    static_configs:
+      - targets: ['192.168.100.14:8765']
+        labels:
+          application: 'API Gateway'
+
+  - job_name: 'Monitoring Service'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 2s
+    static_configs:
+      - targets: ['192.168.100.14:8889']
+        labels:
+          application: 'Monitoring Service'
+
+  - job_name: 'OAuth Server'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 2s
+    static_configs:
+      - targets: ['192.168.100.14:8777']
+        labels:
+          application: 'OAuth Server'
