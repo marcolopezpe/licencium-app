@@ -1,6 +1,19 @@
 version: "3.8"
 
 services:
+  prometheus:
+    image: prom/prometheus:v2.24.0
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - "9098:9090"
+    volumes:
+      - ./prometheus/config/:/etc/prometheus/
+    command:
+        - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      - default
+
   grafana:
     image: grafana/grafana-oss:8.5.22
     pull_policy: always
@@ -13,19 +26,6 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=password1234
       - GF_SERVER_DOMAIN=localhost
-    networks:
-      - default
-
-  prometheus:
-    image: prom/prometheus:v2.24.0
-    container_name: prometheus
-    restart: unless-stopped
-    ports:
-      - "9098:9090"
-    volumes:
-      - ./prometheus/config/:/etc/prometheus/
-    command:
-        - '--config.file=/etc/prometheus/prometheus.yml'
     networks:
       - default
 

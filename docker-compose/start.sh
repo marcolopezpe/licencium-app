@@ -24,6 +24,6 @@ echo '###########################################################'
 echo 'Creacion de los topicos de kafka"'
 echo '###########################################################'
 
-docker exec -it kafka01 kafka-topics --bootstrap-server localhost:9092 --create --topic usuarios --partitions 3 --replication-factor 2
-docker exec -it kafka01 kafka-topics --bootstrap-server localhost:9092 --create --topic clientes --partitions 3 --replication-factor 2
-docker exec -it kafka01 kafka-topics --bootstrap-server localhost:9092 --create --topic licencias --partitions 3 --replication-factor 2
+docker exec -it kafka01 kafka-topics --bootstrap-server localhost:9092 --if-not-exists --create --topic usuarios --partitions 3 --replication-factor 2
+docker exec -it kafka01 kafka-topics --bootstrap-server localhost:9092 --if-not-exists --create --topic clientes --partitions 3 --replication-factor 2
+docker exec -it kafka01 kafka-topics --bootstrap-server localhost:9092 --if-not-exists --create --topic licencias --partitions 3 --replication-factor 2
